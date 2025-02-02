@@ -12,9 +12,9 @@ import { Friend, Colleague, ColleagueHistory } from './myTypes';
     age: 31,
   };
   
-  const friends: Friend[] = [friend1, friend2];
-  console.log(friends[1]);
-  
+  export const friends: Friend[] = [friend1, friend2]; 
+  // console.log(friends[1]);
+
   const colleague1: Colleague = {
     name: "Ralph Graham",
     department: "Engineering",
@@ -47,4 +47,4 @@ import { Friend, Colleague, ColleagueHistory } from './myTypes';
     former: [],
   };
   
-  console.log(colleagues.current[0]);
+// console.log(colleagues.current[0]); 
