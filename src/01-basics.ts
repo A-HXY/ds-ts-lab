@@ -11,7 +11,7 @@ import { Friend, Colleague, ColleagueHistory } from './myTypes';
     name: "Jane Costello",
     phone: "086--12345",
     age: 31,
-    interests: ["Music", "Sport"],
+    interests: ["Music", "Sport", "Politics"],
   };
   
   export const friends: Friend[] = [friend1, friend2]; 
