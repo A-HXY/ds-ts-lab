@@ -29,15 +29,21 @@ console.log(colleagues.current.filter(c => c.name === "Sheild O Connell"));
 
 function sortColleagues(
     colleagues: Colleague[],
-    sorter: (c1: Colleague, c2: Colleague) => number
+    sorter: (c1: Colleague, c2: Colleague) => number,
+    max?: number 
 ): EmailContact[] {
-    return [...colleagues] 
-        .sort(sorter)
-        .map(c => ({ name: c.name, email: c.contact.email }));
+    let end = colleagues.length;
+    if (max !== undefined) { 
+        end = max < 2 ? 1 : max;
+    }
+    const sorted = [...colleagues].sort(sorter); 
+    const fullResult = sorted.map(ce => ({ name: ce.name, email: ce.contact.email }));
+    return fullResult.slice(0, end);
 }
 
-console.log(sortColleagues(colleagues.current, (a, b) => a.contact.extension - b.contact.extension));
-console.log(sortColleagues(colleagues.current, (a, b) => a.name.length - b.name.length));
+console.log(sortColleagues(colleagues.current, (a, b) => (a.contact.extension - b.contact.extension), 3));
+console.log(sortColleagues(colleagues.current, (a, b) => (a.name.length - b.name.length), 1));
+console.log(sortColleagues(colleagues.current, (a, b) => (a.name.length - b.name.length))); 
 
 function findFriends(fs: Friend[], predicate: (f: Friend) => boolean): string[] {
     return fs.filter(predicate).map(f => f.name);
@@ -45,3 +51,14 @@ function findFriends(fs: Friend[], predicate: (f: Friend) => boolean): string[] 
 
 console.log(findFriends(friends, f => f.name.startsWith('Pa')));
 console.log(findFriends(friends, f => f.age < 35));
+
+function addInterest(f: Friend, interest: string): string[] {
+    if (!f.interests) {
+        f.interests = []; 
+    }
+    f.interests.push(interest);
+    return f.interests;
+}
+
+console.log(addInterest(friends[0], "Politics")); 
+console.log(addInterest(friends[1], "Reading")); 
